@@ -1,5 +1,5 @@
 {
-  title: 'Line Notify',
+  title: 'Creating New Money Forward Invoice',
 
   connection: {
     fields: [
@@ -8,7 +8,7 @@
         label: "Client ID",
         optional: false,
         hint: "You can find your client ID " \
-          "<a href='https://developers.line.me/console/' " \
+          "<a href='https://invoice.moneyforward.com/oauth/applications/' " \
           "target='_blank'>here</a>"
       },
       {
@@ -17,7 +17,7 @@
         control_type: "password",
         optional: false,
         hint: "You can find your client secret " \
-          "<a href='https://developers.line.me/console/' " \
+          "<a href='https://invoice.moneyforward.com/oauth/applications/' " \
           "target='_blank'>here</a>"
       }
     ],
