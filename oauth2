@@ -60,7 +60,7 @@
     },
 
     base_uri: lambda do
-      "https://notify-bot.line.me"
+      "https://invoice.moneyforward.com/oauth/applications/"
     end
   },
   object_definitions: {
@@ -73,3 +73,51 @@
       end
     }
   },
+ actions: {
+ 
+  create_invoce{
+   description: "Create a new invoice"
+   input_fields: lambda do
+    [
+     {name: "billing[department_id]" optional:false}
+     {name: "billing[title]" }
+     {name: "billing[billing_number]" }
+     {name: "billing[payment_condition]" }
+     {name: "billing[note]" }
+     {name: "billing[billing_date]" }
+     {name: "billing[due_date]" }
+     {name: "billing[sales_date]" }
+     {name: "billing[memo]" }
+     {name: "billing[document_name]" }
+     {name: "billing[tags]" }
+     {name: "billing[items][0][name]" }
+     {name: "billing[items][0][code]" }
+     {name: "billing[items][0][detail]" }
+     {name: "billing[items][0][quantity]" }
+     {name: "billing[items][0][unit_price]" }
+     {name: "billing[items][0][unit]" }
+     {name: "billing[items][0][excise]" }
+     {name: "billing[items][1][name]" }
+     {name: "billing[items][1][code]" }
+     {name: "billing[items][1][detail]" }
+     {name: "billing[items][1][quantity]" }
+     {name: "billing[items][1][unit_price]" }
+     {name: "billing[items][1][unit]" }
+     {name: "billing[items][1][excise]" }
+     ]
+     end,
+     
+     execute: lambda do |_connection, input|
+        post("https://notify-api.line.me/api/notify").
+          payload(input).
+          request_format_multipart_form
+      end,
+      output_fields: lambda do |object_definitions|
+        object_definitions['response']
+      end,
+      sample_output: lambda do |_|
+        { "status": 200, "message": "ok" }
+      end
+    }
+  }
+}
